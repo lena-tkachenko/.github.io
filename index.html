@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Olena Tkachenko, DAP Engineer</title>
+<meta name="description" content="DAP Engineer and Certified WalkMe Builder with a UX design background. Six demo tours with the reasoning and logic behind them.">
+<meta property="og:title" content="Olena Tkachenko, DAP Engineer">
+<meta property="og:description" content="Certified WalkMe Builder with a UX design background. Six demo tours with the reasoning and logic behind them.">
+<meta property="og:type" content="website">
+
+<script>
+/* =====================================================================
+   НАЛАШТУВАННЯ САЙТУ — редагуйте ТІЛЬКИ текст між лапками "" нижче.
+   Лапки, коми й дужки не видаляйте.
+
+   video — посилання на відео з YouTube (Unlisted) або Loom.
+           Приклад: video: "https://youtu.be/AbCdEfGhIjk"
+           Поки поле порожнє, на сайті видно «Video coming soon».
+   app   — на чому побудовано демо, напр. "Twenty CRM" або "Odoo".
+           Можна залишити порожнім.
+   show  — true = показувати кейс, false = сховати.
+   ===================================================================== */
+window.SITE_CONFIG = {
+  email: "",                       // ваш email, напр. "olena@example.com"
+  cvUrl: "",                       // посилання на CV, напр. "cv.pdf" або посилання з Google Drive
+  trinetixTitle: "DAP Engineer / UX Designer",    // має збігатися з посадою в документах Trinetix
+  clientName: "Big Four consulting firm (US)",    // якщо Trinetix дозволить — "Deloitte (US)"
+  hideCasesWithoutVideo: false,    // true = ховати кейси, у яких ще немає відео
+
+  cases: {
+    "onboarding":          { video: "", app: "", show: true  },
+    "automation":          { video: "", app: "", show: true  },
+    "design-system":       { video: "", app: "", show: true  },
+    "ai-smarttip":         { video: "", app: "", show: true  },
+    "feature-launch":      { video: "", app: "", show: true  },
+    "resilient-selectors": { video: "", app: "", show: true  },
+    "validation":          { video: "", app: "", show: false }   // запасний кейс без AI
+  }
+};
+/* ======================= КІНЕЦЬ НАЛАШТУВАНЬ ======================= */
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: dark;
+  --ink: #0E1828;
+  --ink-deep: #0A1322;
+  --surface: #15233A;
+  --surface-2: #1A2A44;
+  --line: #27395A;
+  --text: #F3F6FA;
+  --muted: #A9B8CC;
+  --faint: #8094B1;
+  --accent: #FFB547;
+  --accent-hover: #FFC46E;
+  --accent-ink: #0E1828;
+  --paper: #FFFFFF;
+  --paper-text: #0E1828;
+  --paper-muted: #55657D;
+  --display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --body: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+*, *::before, *::after { box-sizing: inherit; }
+html { background: var(--ink); scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 24px); }
+body { margin: 0; background: var(--ink); color: var(--text); font-family: var(--body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+img, svg, video { max-width: 100%; }
+a { color: var(--text); text-decoration-color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+a:hover { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+[hidden] { display: none !important; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: 24px; }
+
+/* Header */
+.site-header { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-block: 24px; }
+.brand { font-family: var(--display); font-weight: 600; font-size: 18px; text-decoration: none; }
+.nav { display: flex; gap: 24px; flex-wrap: wrap; }
+.nav a { color: var(--muted); text-decoration: none; font-size: 15px; }
+.nav a:hover { color: var(--text); }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 56px; align-items: center; padding-block: 72px 104px; }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(36px, 5.2vw, 60px); line-height: 1.06; letter-spacing: -0.02em; margin: 0 0 24px; }
+.lede { color: var(--muted); font-size: 19px; max-width: 34em; margin: 0 0 32px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px; border-radius: 999px; font: 500 16px/1 var(--body); text-decoration: none; cursor: pointer; border: 1px solid transparent; }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover { background: var(--accent-hover); color: var(--accent-ink); }
+.btn-ghost { background: transparent; color: var(--text); border-color: var(--line); }
+.btn-ghost:hover { border-color: var(--muted); color: var(--text); }
+.tour-start { position: relative; }
+.pulse { position: absolute; top: -5px; right: -5px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--ink); }
+.pulse::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--accent); animation: pulse 1.8s ease-out infinite; }
+@keyframes pulse { from { transform: scale(1); opacity: 0.55; } to { transform: scale(2.8); opacity: 0; } }
+
+/* Hero illustration */
+.mock { position: relative; padding: 8px 0; }
+.mock-card { position: relative; max-width: 400px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 24px 56px rgba(3, 8, 18, 0.5); }
+.mock-head { display: flex; justify-content: space-between; align-items: center; }
+.mock-title { font-family: var(--display); font-weight: 600; font-size: 16px; }
+.mock-progress { display: flex; gap: 6px; }
+.mock-progress i { display: block; width: 22px; height: 4px; border-radius: 2px; background: #2E4468; }
+.mock-progress i.on { background: var(--accent); }
+.mock-field { display: flex; flex-direction: column; gap: 6px; }
+.mock-label { font-size: 12px; line-height: 16px; color: var(--muted); }
+.mock-input { height: 34px; padding: 0 12px; display: flex; align-items: center; background: #0F1B2E; border: 1px solid #2A3E60; border-radius: 8px; font-size: 13px; color: #C9D4E3; }
+.mock-skel { width: 60%; height: 6px; border-radius: 3px; background: #273B5C; }
+.mock-btnwrap { position: relative; align-self: flex-start; }
+.mock-btn { display: block; height: 36px; padding: 0 18px; border-radius: 8px; background: #3B5D93; color: #FFFFFF; font: 500 14px/36px var(--body); }
+.mock-hotspot { position: absolute; right: -22px; top: -22px; width: 44px; height: 44px; }
+.mock-hotspot i { position: absolute; border-radius: 50%; background: var(--accent); }
+.mock-hotspot i:nth-child(1) { inset: 0; opacity: 0.18; }
+.mock-hotspot i:nth-child(2) { inset: 8px; opacity: 0.35; }
+.mock-hotspot i:nth-child(3) { inset: 16px; }
+.mock-tip { position: absolute; left: 144px; top: 80px; width: 236px; background: var(--paper); color: var(--paper-text); border-radius: 12px; padding: 14px 16px; box-shadow: 0 14px 34px rgba(3, 8, 18, 0.45); }
+.mock-tip::after { content: ""; position: absolute; left: 14px; bottom: -7px; width: 14px; height: 14px; background: var(--paper); transform: rotate(45deg); }
+.mock-tip .step { display: block; font-family: var(--mono); font-size: 12px; color: var(--paper-muted); }
+.mock-tip .t { display: block; font-family: var(--display); font-weight: 600; font-size: 16px; line-height: 1.3; margin-top: 4px; }
+.mock-tip .row { display: flex; justify-content: flex-end; align-items: center; gap: 6px; margin-top: 12px; }
+.mock-tip .back { font-size: 13px; color: var(--paper-muted); padding: 6px 10px; }
+.mock-tip .next { font-size: 13px; font-weight: 600; background: var(--accent); color: var(--accent-ink); border-radius: 999px; padding: 6px 16px; }
+.mock-xpath { font-family: var(--mono); font-size: 12.5px; color: var(--faint); margin: 18px 0 0; overflow-wrap: anywhere; }
+
+/* Sections */
+.section { padding-block: 96px; border-top: 1px solid var(--line); }
+.section-head { max-width: 640px; margin-bottom: 48px; }
+h2 { font-family: var(--display); font-weight: 600; font-size: clamp(28px, 3.6vw, 40px); line-height: 1.1; letter-spacing: -0.015em; margin: 0 0 16px; }
+.section-head p { color: var(--muted); margin: 0; }
+
+/* Demo index */
+.case-index { list-style: none; margin: 0 0 72px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; }
+.case-index a { display: block; padding: 16px 0 18px; border-top: 1px solid var(--line); text-decoration: none; }
+.case-index .topic { display: block; font-size: 13px; color: var(--accent); margin-bottom: 4px; }
+.case-index .name { display: block; font-family: var(--display); font-weight: 500; font-size: 18px; line-height: 1.3; }
+.case-index a:hover .name { color: var(--accent); }
+
+/* Demo cases */
+.case { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+.case + .case { border-top: 1px solid var(--line); margin-top: 64px; padding-top: 64px; }
+.case:nth-of-type(even) .case-media { order: 2; }
+.case-media { display: flex; flex-direction: column; gap: 20px; }
+.video { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 14px; border: 1px solid var(--line); background-color: var(--surface); background-image: radial-gradient(#22355A 1.2px, transparent 1.3px); background-size: 22px 22px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; color: var(--muted); font-size: 15px; }
+.video.has-video { background: #000; }
+.video iframe, .video video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.play { width: 64px; height: 64px; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--line); display: grid; place-items: center; }
+figure { margin: 0; }
+.code-label { font-size: 13px; font-weight: 600; color: var(--text); margin: 0 0 8px; }
+.code { margin: 0; background: var(--ink-deep); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; overflow-x: auto; font: 400 13.5px/1.65 var(--mono); color: #D6DFEB; }
+.code .c { color: var(--faint); }
+.code .k { color: var(--accent); }
+figcaption { font-size: 13px; color: var(--faint); margin-top: 8px; }
+.case h3 { font-family: var(--display); font-weight: 600; font-size: 28px; line-height: 1.2; letter-spacing: -0.01em; margin: 0 0 10px; }
+.case-summary { font-size: 18px; color: var(--text); margin: 0 0 16px; }
+.tags { list-style: none; margin: 0 0 8px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.tags li { font-size: 13px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; }
+.case-meta { margin: 12px 0 0; font-size: 14px; display: flex; gap: 6px; }
+.case-meta dt { color: var(--faint); }
+.case-meta dd { margin: 0; }
+.case h4 { font-family: var(--body); font-weight: 600; font-size: 15px; color: var(--text); margin: 26px 0 6px; }
+.case p { color: var(--muted); margin: 0; }
+.case .case-summary { color: var(--text); }
+.case ol { color: var(--muted); margin: 0; padding-left: 22px; }
+.case ol li { margin-bottom: 6px; padding-left: 4px; }
+.case ol li::marker { color: var(--accent); font-family: var(--mono); font-size: 14px; }
+.demos-empty { color: var(--muted); margin: 0; }
+
+/* Experience */
+.job { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 32px; }
+.job + .job { border-top: 1px solid var(--line); margin-top: 36px; padding-top: 36px; }
+.job-when { color: var(--faint); font-size: 15px; margin: 0; }
+.job-when span { display: block; }
+.job h3 { font-family: var(--display); font-weight: 600; font-size: 22px; line-height: 1.25; margin: 0; }
+.job .role { color: var(--muted); margin: 4px 0 18px; }
+.job-streams { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+.job h4 { font-family: var(--body); font-weight: 600; font-size: 15px; margin: 0 0 8px; color: var(--text); }
+.bul { margin: 0; padding-left: 18px; color: var(--muted); }
+.bul li { margin-bottom: 6px; }
+.bul li::marker { color: var(--accent); }
+.job p.desc { margin: 0; color: var(--muted); }
+
+/* Certifications */
+.certs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.cert { display: flex; gap: 20px; align-items: flex-start; padding: 24px; border: 1px solid var(--line); border-radius: 14px; }
+.cert-mark { flex: none; width: 56px; height: 56px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); display: grid; place-items: center; font-family: var(--display); font-weight: 600; font-size: 20px; color: var(--accent); }
+.cert h3 { font-family: var(--display); font-weight: 600; font-size: 18px; line-height: 1.3; margin: 0 0 4px; }
+.cert p { margin: 0; color: var(--muted); font-size: 15px; }
+
+/* Path */
+.path { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.path li { position: relative; padding-top: 60px; }
+.path li::before { content: ""; position: absolute; top: 17px; left: 48px; right: -20px; border-top: 2px dashed var(--line); }
+.path li:last-child::before { display: none; }
+.dot { position: absolute; top: 0; left: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--surface-2); display: grid; place-items: center; color: var(--muted); font: 600 15px/1 var(--display); }
+.path li.here .dot { background: var(--accent); color: var(--accent-ink); box-shadow: 0 0 0 8px rgba(255, 181, 71, 0.18); }
+.here-tag { display: inline-block; font-size: 12px; font-weight: 600; color: var(--accent-ink); background: var(--accent); border-radius: 999px; padding: 2px 10px; margin-bottom: 8px; }
+.path h3 { font-family: var(--display); font-weight: 600; font-size: 19px; margin: 0 0 6px; }
+.path p { margin: 0; color: var(--muted); font-size: 15px; }
+
+/* Contact */
+.contact h2 { font-size: clamp(36px, 5vw, 56px); }
+.contact-lede { color: var(--muted); max-width: 36em; margin: 0; }
+.contact-links { list-style: none; padding: 0; margin: 40px 0 0; border-top: 1px solid var(--line); }
+.contact-links a { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; padding: 20px 0; border-bottom: 1px solid var(--line); text-decoration: none; font-family: var(--display); font-weight: 500; font-size: clamp(20px, 2.4vw, 28px); }
+.contact-links a span { font-family: var(--body); font-weight: 400; font-size: 15px; color: var(--faint); overflow-wrap: anywhere; }
+.contact-links a:hover { color: var(--accent); }
+.site-footer { padding-block: 32px; color: var(--faint); font-size: 13px; border-top: 1px solid var(--line); }
+.site-footer p { margin: 0 0 4px; }
+
+/* The page's own product tour */
+.tour-spot { position: fixed; z-index: 50; border-radius: 14px; box-shadow: 0 0 0 200vmax rgba(4, 9, 18, 0.72); outline: 2px solid var(--accent); pointer-events: none; transition: top 0.25s ease, left 0.25s ease, width 0.25s ease, height 0.25s ease; }
+.tour-tip { position: fixed; z-index: 51; width: min(320px, calc(100vw - 32px)); background: var(--paper); color: var(--paper-text); border-radius: 14px; padding: 18px 20px 14px; box-shadow: 0 18px 44px rgba(3, 8, 18, 0.5); font-family: var(--body); }
+.tour-bars { display: flex; gap: 6px; margin-bottom: 12px; }
+.tour-bars i { flex: 1; height: 4px; border-radius: 2px; background: #D9E0EA; }
+.tour-bars i.on { background: #F0A030; }
+.tour-count { margin: 0; font-family: var(--mono); font-size: 12px; color: var(--paper-muted); }
+.tour-title { margin: 4px 0 6px; font-family: var(--display); font-weight: 600; font-size: 19px; line-height: 1.25; }
+.tour-body { margin: 0; font-size: 15px; line-height: 1.5; color: #33435A; }
+.tour-actions { display: flex; align-items: center; gap: 4px; margin-top: 14px; }
+.tour-tip button { font: 500 14px/1 var(--body); min-height: 44px; padding: 0 14px; border-radius: 999px; border: 0; cursor: pointer; background: transparent; color: var(--paper-muted); }
+.tour-tip button:hover { color: var(--paper-text); }
+.tour-tip .tour-skip { margin-right: auto; padding-left: 0; }
+.tour-tip .tour-next { background: var(--accent); color: var(--accent-ink); font-weight: 600; padding: 0 20px; }
+.tour-tip .tour-next:hover { background: var(--accent-hover); }
+.tour-tip :focus-visible { outline-color: var(--paper-text); }
+.tour-arrow { position: absolute; width: 14px; height: 14px; background: var(--paper); transform: rotate(45deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse::before { animation: none; opacity: 0; }
+  .tour-spot { transition: none; }
+}
+@media (max-width: 900px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 48px; padding-block: 48px 80px; }
+  .case-index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .case { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .case:nth-of-type(even) .case-media { order: 0; }
+  .job { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .job-when span { display: inline; }
+  .job-when span + span::before { content: ", "; }
+  .job-streams { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .certs { grid-template-columns: minmax(0, 1fr); }
+  .path { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .path li { padding-top: 0; padding-left: 60px; }
+  .path li::before { top: 46px; left: 17px; right: auto; bottom: -26px; border-top: 0; border-left: 2px dashed var(--line); }
+}
+@media (max-width: 560px) {
+  .section { padding-block: 72px; }
+  .case-index { grid-template-columns: minmax(0, 1fr); }
+  .mock-tip { left: auto; right: 0; top: 64px; width: 200px; }
+  .mock-tip::after { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="site-header">
+    <a class="brand" href="#top">Olena Tkachenko</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#demos">Demos</a>
+      <a href="#experience">Experience</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div id="hero-copy">
+        <h1>I build in-app guidance that helps people actually use software.</h1>
+        <p class="lede">DAP Engineer and Certified WalkMe Builder with a UX design background. I’ve built 50+ guided tours for enterprise applications and helped design a digital adoption platform from scratch.</p>
+        <div class="actions">
+          <button type="button" class="btn btn-primary tour-start" id="tour-start">Take the tour of this page<span class="pulse" aria-hidden="true"></span></button>
+          <a class="btn btn-ghost" id="hero-secondary" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="mock" aria-hidden="true">
+        <div class="mock-card">
+          <div class="mock-head">
+            <span class="mock-title">New request</span>
+            <span class="mock-progress"><i class="on"></i><i class="on"></i><i></i><i></i></span>
+          </div>
+          <div class="mock-field">
+            <span class="mock-label">Request type</span>
+            <span class="mock-input">Hardware</span>
+          </div>
+          <div class="mock-field">
+            <span class="mock-label">Details</span>
+            <span class="mock-input"><span class="mock-skel"></span></span>
+          </div>
+          <div class="mock-btnwrap">
+            <span class="mock-btn">Submit request</span>
+            <span class="mock-hotspot"><i></i><i></i><i></i></span>
+          </div>
+          <div class="mock-tip">
+            <span class="step">Step 2 of 4</span>
+            <span class="t">Submit your request here</span>
+            <span class="row"><span class="back">Back</span><span class="next">Next</span></span>
+          </div>
+        </div>
+        <p class="mock-xpath">//form[@id='new-request']//button[@type='submit']</p>
+      </div>
+    </section>
+
+    <section class="section" id="demos" aria-labelledby="demos-title">
+      <div class="section-head">
+        <h2 id="demos-title">Demos</h2>
+        <p>Short recordings of tours I built on sandbox apps, each with the reasoning and the logic behind it. Nothing here is under NDA.</p>
+      </div>
+
+      <ul class="case-index" aria-label="Demo overview">
+        <li><a href="#onboarding"><span class="topic">Onboarding</span><span class="name">First-day onboarding in a CRM</span></a></li>
+        <li><a href="#automation"><span class="topic">Automation</span><span class="name">One click, ten steps</span></a></li>
+        <li><a href="#design-system"><span class="topic">Design</span><span class="name">A design system for guidance</span></a></li>
+        <li><a href="#ai-smarttip"><span class="topic">AI</span><span class="name">AI that checks what people type</span></a></li>
+        <li><a href="#feature-launch"><span class="topic">Change management</span><span class="name">Launching a feature and measuring adoption</span></a></li>
+        <li><a href="#resilient-selectors"><span class="topic">Engineering &amp; QA</span><span class="name">Making a tour survive UI changes</span></a></li>
+        <li><a href="#validation"><span class="topic">Data quality</span><span class="name">Preventing errors before Save</span></a></li>
+      </ul>
+
+      <!-- ============ CASE: onboarding ============ -->
+      <article class="case" id="onboarding" data-case="onboarding">
+        <div class="case-media">
+          <div class="video" role="img" aria-label="Video coming soon">
+            <span class="play"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#A9B8CC"></path></svg></span>
+            <span>Video coming soon</span>
+          </div>
+          <figure>
+            <p class="code-label">The logic</p>
+            <pre class="code"><code><span class="c">// Welcome appears once, for new reps only</span>
+<span class="k">Show ShoutOut</span> "Welcome" if
+  user segment = "New sales reps"
+  AND ShoutOut not seen before
+
+<span class="c">// The task completes on a real outcome,</span>
+<span class="c">// not on finishing the tour</span>
+<span class="k">Mark task</span> "Create your first lead" done when
+  the lead record is saved</code></pre>
+            <figcaption>Simplified logic, written in plain language.</figcaption>
+          </figure>
+        </div>
+        <div class="case-body">
+          <h3>First-day onboarding in a CRM</h3>
+          <p class="case-summary">Takes a new sales rep from first login to their first saved lead, without a training session.</p>
+          <ul class="tags" aria-label="What this demo shows">
+            <li>Smart Walk-Thru</li><li>ShoutOut</li><li>Onboarding Tasks</li><li>SmartTips</li>
+          </ul>
+          <dl class="case-meta built-on" hidden><dt>Built on</dt><dd></dd></dl>
+          <h4>The problem</h4>
+          <p>New reps get a login and a long PDF. On day one they don’t know where to start, so they ask colleagues the same questions and save leads with missing fields.</p>
+          <h4>What I built</h4>
+          <ol>
+            <li>A welcome ShoutOut on first login that offers a two-minute start, with an option to skip.</li>
+            <li>A Smart Walk-Thru that creates the first real lead step by step, explaining each required field.</li>
+            <li>SmartTips on key fields that explain the expected format right where it’s needed.</li>
+            <li>An Onboarding Tasks checklist that marks “Create your first lead” as done when the record is saved.</li>
+          </ol>
+          <h4>Why it’s built this way</h4>
+          <p>The welcome shows once and can be dismissed, because forced tours get closed on reflex. The walkthrough does real work instead of a demo click-through, so at the end the rep has an actual lead. The checklist lets people come back later instead of finishing everything on day one.</p>
+        </div>
+      </article>
+
+      <!-- ============ CASE: automation ============ -->
+      <article class="case" id="automation" data-case="automation">
+        <div class="case-media">
+          <div class="video" role="img" aria-label="Video coming soon">
+            <span class="play"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#A9B8CC"></path></svg></span>
+            <span>Video coming soon</span>
+          </div>
+          <figure>
+            <p class="code-label">The logic</p>
+            <pre class="code"><code><span class="k">Launcher</span> "Create standard record"
+  → play automated Smart Walk-Thru
+
+<span class="k">Steps 1–8</span>  auto-play
+  wait for the element, then click or fill
+<span class="k">Step 9</span>     pause: user reviews, clicks Save
+<span class="k">Step 10</span>    success message + link to record
+
+<span class="c">// If a step can’t find its element,</span>
+<span class="c">// stop automating and guide the user</span>
+<span class="c">// manually from that point</span></code></pre>
+            <figcaption>Simplified logic, written in plain language.</figcaption>
+          </figure>
+        </div>
+        <div class="case-body">
+          <h3>One click, ten steps</h3>
+          <p class="case-summary">A launcher that creates a standard record and runs the repetitive steps for the user, ending with a clear success message.</p>
+          <ul class="tags" aria-label="What this demo shows">
+            <li>Launcher</li><li>Automated steps</li><li>Wait-for conditions</li><li>Error handling</li>
+          </ul>
+          <dl class="case-meta built-on" hidden><dt>Built on</dt><dd></dd></dl>
+          <h4>The problem</h4>
+          <p>Creating a standard record, such as a quote or an internal request, takes more than ten clicks: open the form, pick a template, fill the same fields, save. People make mistakes in exactly these boring, repetitive parts.</p>
+          <h4>What I built</h4>
+          <ol>
+            <li>A launcher next to the list view that starts the whole process in one click.</li>
+            <li>A Smart Walk-Thru of 8–10 automated steps that opens the form, fills default values, selects options and moves between screens.</li>
+            <li>Wait-for conditions between actions, so automation continues only when the page has actually loaded.</li>
+            <li>A pause before saving, where the user reviews the filled form and confirms.</li>
+            <li>A success message with a link to the new record, and a fallback to manual guidance if any step fails.</li>
+          </ol>
+          <h4>Why it’s built this way</h4>
+          <p>I automate only the steps that are the same every time and leave decisions to the person. Waiting for elements instead of fixed delays keeps the flow reliable on slow connections. The fallback matters most: if the page changes, the user gets guidance instead of a silent failure.</p>
+        </div>
+      </article>
+
+      <!-- ============ CASE: design-system ============ -->
+      <article class="case" id="design-system" data-case="design-system">
+        <div class="case-media">
+          <div class="video" role="img" aria-label="Video coming soon">
+            <span class="play"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#A9B8CC"></path></svg></span>
+            <span>Video coming soon</span>
+          </div>
+          <figure>
+            <p class="code-label">The logic</p>
+            <pre class="code"><code><span class="c">/* Guidance theme tokens */</span>
+<span class="k">--guide-accent</span>:   #2953E0;
+<span class="k">--guide-text</span>:     #1A2233;
+<span class="k">--guide-surface</span>:  #FFFFFF;
+<span class="k">--guide-radius</span>:   12px;
+<span class="k">--guide-font</span>:     inherit; <span class="c">/* the app’s own font */</span>
+
+<span class="c">/* Accessibility rules */</span>
+text on surface:   contrast ≥ 4.5 : 1
+every button:      visible focus state</code></pre>
+            <figcaption>Simplified theme, written as design tokens.</figcaption>
+          </figure>
+        </div>
+        <div class="case-body">
+          <h3>A design system for in-app guidance</h3>
+          <p class="case-summary">One theme for every tooltip, modal and launcher, so guidance looks like part of the product.</p>
+          <ul class="tags" aria-label="What this demo shows">
+            <li>Global theme</li><li>CSS</li><li>Templates</li><li>Accessibility</li>
+          </ul>
+          <dl class="case-meta built-on" hidden><dt>Built on</dt><dd></dd></dl>
+          <h4>The problem</h4>
+          <p>When several builders create content, each tooltip ends up with its own colors, fonts and buttons. Guidance starts to look like a layer of ads on top of the app, and people learn to ignore it.</p>
+          <h4>What I built</h4>
+          <ol>
+            <li>Design tokens for color, type, spacing and corner radius, taken from the host app’s own interface.</li>
+            <li>Reusable templates for tooltips, step balloons, modals and banners, with consistent buttons and step counters.</li>
+            <li>Global CSS that applies the theme everywhere, so one change updates all content.</li>
+            <li>Accessibility checks: text contrast of at least 4.5:1, visible focus states and keyboard navigation.</li>
+            <li>A before-and-after comparison on the same flow.</li>
+          </ol>
+          <h4>Why it’s built this way</h4>
+          <p>This is where my UX background pays off. A shared system makes content faster to build and easier to maintain, and guidance that matches the product feels trustworthy rather than intrusive.</p>
+        </div>
+      </article>
+
+      <!-- ============ CASE: ai-smarttip ============ -->
+      <article class="case" id="ai-smarttip" data-case="ai-smarttip">
+        <div class="case-media">
+          <div class="video" role="img" aria-label="Video coming soon">
+            <span class="play"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#A9B8CC"></path></svg></span>
+            <span>Video coming soon</span>
+          </div>
+          <figure>
+            <p class="code-label">The logic</p>
+            <pre class="code"><code><span class="k">AI SmartTip</span> on field "Description"
+
+<span class="k">Prompt</span>
+  Check whether the text says what happened,
+  where in the app, and when it started.
+  If anything is missing, name it in one
+  short, friendly sentence.
+
+<span class="k">Show</span> only when the check fails</code></pre>
+            <figcaption>Simplified logic, written in plain language.</figcaption>
+          </figure>
+        </div>
+        <div class="case-body">
+          <h3>AI that checks what people type</h3>
+          <p class="case-summary">An AI SmartTip that reviews a free-text field and tells the user what’s missing before they submit.</p>
+          <ul class="tags" aria-label="What this demo shows">
+            <li>AI SmartTip</li><li>Prompt-based validation</li><li>UX writing</li>
+          </ul>
+          <dl class="case-meta built-on" hidden><dt>Built on</dt><dd></dd></dl>
+          <h4>The problem</h4>
+          <p>Support requests arrive with descriptions like “doesn’t work”, and the first reply is always a request for details. Classic validation can check that a field isn’t empty, but not whether the text is actually useful.</p>
+          <h4>What I built</h4>
+          <ol>
+            <li>An AI SmartTip on the description field of a request form.</li>
+            <li>A validation prompt that checks for three things: what happened, where in the app, and when it started.</li>
+            <li>A short, friendly hint that names exactly what’s missing, shown only when something is.</li>
+            <li>A test run on good and bad sample descriptions before publishing.</li>
+          </ol>
+          <h4>Why it’s built this way</h4>
+          <p>AI fits here because the rule is about meaning, not format. I kept the prompt narrow so its answers stay predictable, and tested it against examples first, because an AI check that misfires annoys people faster than no check at all.</p>
+        </div>
+      </article>
+
+      <!-- ============ CASE: feature-launch ============ -->
+      <article class="case" id="feature-launch" data-case="feature-launch">
+        <div class="case-media">
+          <div class="video" role="img" aria-label="Video coming soon">
+            <span class="play"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#A9B8CC"></path></svg></span>
+            <span>Video coming soon</span>
+          </div>
+          <figure>
+            <p class="code-label">The logic</p>
+            <pre class="code"><code><span class="k">Show ShoutOut</span> "New approval flow" if
+  user is on the Approvals page
+  AND has not used the new feature yet
+  AND ShoutOut shown fewer than 2 times
+
+<span class="k">Track</span>   click on "Submit for approval"
+<span class="k">Survey</span>  after the first successful use</code></pre>
+            <figcaption>Simplified logic, written in plain language.</figcaption>
+          </figure>
+        </div>
+        <div class="case-body">
+          <h3>Launching a feature and measuring adoption</h3>
+          <p class="case-summary">A targeted announcement, a short walkthrough and a one-question survey, with tracking that shows whether people actually use the new feature.</p>
+          <ul class="tags" aria-label="What this demo shows">
+            <li>ShoutOut</li><li>Smart Walk-Thru</li><li>Survey</li><li>Tracked events</li>
+          </ul>
+          <dl class="case-meta built-on" hidden><dt>Built on</dt><dd></dd></dl>
+          <h4>The problem</h4>
+          <p>A new feature ships, gets a line in a release email, and most people keep working the old way. Without data, nobody knows whether the change landed.</p>
+          <h4>What I built</h4>
+          <ol>
+            <li>A ShoutOut that appears in context, on the page where the feature lives, not at login.</li>
+            <li>A three-step Smart Walk-Thru launched from the ShoutOut.</li>
+            <li>A one-question survey after the first use: “Was this easier than before?”</li>
+            <li>Tracked events on the feature’s main button, so adoption can be compared week by week.</li>
+          </ol>
+          <h4>Why it’s built this way</h4>
+          <p>Announcements work best at the moment of need, and they should stop once they’ve done their job. I capped how often the ShoutOut appears and hid it from people who already use the feature. Measurement is part of the build, not an afterthought.</p>
+        </div>
+      </article>
+
+      <!-- ============ CASE: resilient-selectors ============ -->
+      <article class="case" id="resilient-selectors" data-case="resilient-selectors">
+        <div class="case-media">
+          <div class="video" role="img" aria-label="Video coming soon">
+            <span class="play"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#A9B8CC"></path></svg></span>
+            <span>Video coming soon</span>
+          </div>
+          <figure>
+            <p class="code-label">The logic</p>
+            <pre class="code"><code><span class="c">// Fragile: generated ID changes on reload</span>
+//*[@id="input-1042"]
+
+<span class="c">// Stable: anchored to the visible label</span>
+//label[normalize-space()='Start date']
+  /following::input[1]</code></pre>
+            <figcaption>Example of replacing a fragile selector with a stable one.</figcaption>
+          </figure>
+        </div>
+        <div class="case-body">
+          <h3>Making a tour survive UI changes</h3>
+          <p class="case-summary">Replacing fragile auto-captured elements with stable selectors, and testing the tour the way QA tests a release.</p>
+          <ul class="tags" aria-label="What this demo shows">
+            <li>DOM analysis</li><li>XPath</li><li>QA test cases</li>
+          </ul>
+          <dl class="case-meta built-on" hidden><dt>Built on</dt><dd></dd></dl>
+          <h4>The problem</h4>
+          <p>Enterprise apps generate dynamic IDs and re-render parts of the page. A tour that works today breaks after the next release, and users see a balloon pointing at nothing.</p>
+          <h4>What I built</h4>
+          <ol>
+            <li>An audit of every step’s element: which attributes stay the same and which change on reload.</li>
+            <li>Custom XPath selectors anchored to stable attributes and visible labels instead of generated IDs.</li>
+            <li>A test matrix covering user roles, screen sizes, and empty versus filled states.</li>
+            <li>A short QA checklist I run before every publish.</li>
+          </ol>
+          <h4>Why it’s built this way</h4>
+          <p>Stable guidance is invisible work, and it’s where my QA experience shows. Nobody notices a tour that keeps working, but everyone notices one that breaks.</p>
+        </div>
+      </article>
+
+      <!-- ============ SPARE CASE: validation (hidden by default) ============ -->
+      <article class="case" id="validation" data-case="validation">
+        <div class="case-media">
+          <div class="video" role="img" aria-label="Video coming soon">
+            <span class="play"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#A9B8CC"></path></svg></span>
+            <span>Video coming soon</span>
+          </div>
+          <figure>
+            <p class="code-label">The logic</p>
+            <pre class="code"><code><span class="k">SmartTip</span> on "Start date"
+  valid if date ≥ today
+
+<span class="k">Show hint</span> on "Amount" if
+  Stage = "Closed Won"
+  AND Amount is empty</code></pre>
+            <figcaption>Simplified logic, written in plain language.</figcaption>
+          </figure>
+        </div>
+        <div class="case-body">
+          <h3>Preventing errors before Save</h3>
+          <p class="case-summary">Inline hints and validation that catch mistakes in a form before the user saves it.</p>
+          <ul class="tags" aria-label="What this demo shows">
+            <li>SmartTips</li><li>Validation</li><li>Conditional rules</li>
+          </ul>
+          <dl class="case-meta built-on" hidden><dt>Built on</dt><dd></dd></dl>
+          <h4>The problem</h4>
+          <p>Records get saved with wrong formats and missing values, and someone has to clean them up later.</p>
+          <h4>What I built</h4>
+          <ol>
+            <li>Validation SmartTips for formats such as email, phone numbers and dates.</li>
+            <li>Conditional hints that appear only for certain values, for example when a deal is marked as won.</li>
+            <li>Messages written as instructions, not error codes.</li>
+          </ol>
+          <h4>Why it’s built this way</h4>
+          <p>Fixing an error inline costs the user seconds; fixing it later costs someone else much more. Every message says what to do, not just what went wrong.</p>
+        </div>
+      </article>
+
+      <p class="demos-empty" id="demos-empty" hidden>New demos are being recorded. Check back soon.</p>
+    </section>
+
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="section-head">
+        <h2 id="experience-title">Experience</h2>
+      </div>
+
+      <div class="job">
+        <p class="job-when"><span>Aug 2025 – Oct 2026</span><span>Remote, US clients</span></p>
+        <div>
+          <h3>Trinetix</h3>
+          <p class="role" data-config="trinetixTitle">DAP Engineer / UX Designer</p>
+          <div class="job-streams">
+            <div>
+              <h4>Client implementation: <span data-config="clientName">Big Four consulting firm (US)</span></h4>
+              <ul class="bul">
+                <li>Built 50+ guided tours and walkthroughs across ~15 internal enterprise applications on a proprietary DAP</li>
+                <li>Configured targeting, segmentation and launch triggers with boolean-logic display rules</li>
+                <li>Analyzed the DOM to separate dynamic from static elements and wrote stable XPath selectors</li>
+                <li>Styled tooltips and modals with CSS to match each application</li>
+              </ul>
+            </div>
+            <div>
+              <h4>In-house DAP product, built from the ground up</h4>
+              <ul class="bul">
+                <li>Researched existing DAP platforms to inform the feature set</li>
+                <li>Designed bulk publishing, content sorting and pagination, and nested element display</li>
+                <li>Ran QA test cases, functional and regression testing, and root-cause analysis with AI-assisted tools</li>
+                <li>Built demo solutions for prospective clients</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="job">
+        <p class="job-when"><span>May 2023 – Sep 2024</span><span>Denmark, on-site</span></p>
+        <div>
+          <h3>MTO electric a/s</h3>
+          <p class="role">Information Technology Consultant</p>
+          <ul class="bul">
+            <li>Rolled out new digital tools and managed internal IT initiatives, helping colleagues switch to them</li>
+            <li>Taught colleagues to use graphic and design software, including Figma</li>
+            <li>Stepped in on escalated client orders where workers couldn’t follow the technical terminology, and introduced simple visual info blocks that solved the problem</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="certifications" aria-labelledby="certs-title">
+      <div class="section-head">
+        <h2 id="certs-title">Certifications</h2>
+      </div>
+      <div class="certs" id="certs-list">
+        <div class="cert">
+          <span class="cert-mark" aria-hidden="true">II</span>
+          <div>
+            <h3>Certified WalkMe Builder, Level II</h3>
+            <p>WalkMe Digital Adoption Institute. Issued April 2026, valid until April 2028.</p>
+          </div>
+        </div>
+        <div class="cert">
+          <span class="cert-mark" aria-hidden="true">I</span>
+          <div>
+            <h3>Certified WalkMe Builder, Level I</h3>
+            <p>WalkMe Digital Adoption Institute. Issued April 2026, valid until April 2028.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="section-head">
+        <h2 id="about-title">How I got here</h2>
+        <p>Every step was about helping people work with tools more easily.</p>
+      </div>
+      <ol class="path">
+        <li>
+          <span class="dot" aria-hidden="true">1</span>
+          <h3>Research</h3>
+          <p>Evolutionary game theory research at the University of Augsburg, published on arXiv.</p>
+        </li>
+        <li>
+          <span class="dot" aria-hidden="true">2</span>
+          <h3>UX design</h3>
+          <p>Web and mobile products, B2B and B2C, from user research to apps with 100+ screens.</p>
+        </li>
+        <li>
+          <span class="dot" aria-hidden="true">3</span>
+          <h3>Enablement</h3>
+          <p>As an IT consultant in Denmark, I rolled out new software, trained colleagues and turned technical jargon into simple visual instructions.</p>
+        </li>
+        <li class="here">
+          <span class="dot" aria-hidden="true">4</span>
+          <span class="here-tag">You are here</span>
+          <h3>Digital adoption</h3>
+          <p>Building guidance into the software itself, with a designer’s eye for where help belongs.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Let’s talk</h2>
+      <p class="contact-lede">Open to DAP Engineer and Digital Adoption Specialist roles, onboarding-focused product roles, and freelance DAP projects.</p>
+      <ul class="contact-links" id="contact-links">
+        <li id="contact-email"><a href="#contact">Email <span></span></a></li>
+        <li><a href="https://www.linkedin.com/in/lena-tkachenko" target="_blank" rel="noopener">LinkedIn <span>linkedin.com/in/lena-tkachenko</span></a></li>
+        <li><a href="https://www.behance.net/olena-tkachenko" target="_blank" rel="noopener">Behance <span>behance.net/olena-tkachenko</span></a></li>
+        <li id="contact-cv"><a href="#contact" target="_blank" rel="noopener">CV <span>PDF</span></a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Olena Tkachenko</p>
+    <p>Salesforce is a trademark of Salesforce, Inc. WalkMe and other product names are trademarks of their respective owners. This site is not affiliated with or endorsed by them.</p>
+  </footer>
+</div>
+
+<div class="tour-spot" hidden></div>
+<div class="tour-tip" role="dialog" aria-labelledby="tour-title" aria-describedby="tour-body" hidden>
+  <div class="tour-bars" aria-hidden="true"></div>
+  <p class="tour-count" id="tour-count"></p>
+  <h2 class="tour-title" id="tour-title"></h2>
+  <p class="tour-body" id="tour-body"></p>
+  <div class="tour-actions">
+    <button type="button" class="tour-skip">Skip tour</button>
+    <button type="button" class="tour-back">Back</button>
+    <button type="button" class="tour-next">Next</button>
+  </div>
+  <span class="tour-arrow" aria-hidden="true"></span>
+</div>
+
+<script>
+/* Applies SITE_CONFIG to the page. No need to edit anything below. */
+(function () {
+  var cfg = window.SITE_CONFIG || {};
+  var cases = cfg.cases || {};
+
+  function clean(v) { return (typeof v === 'string' ? v : '').trim(); }
+
+  function embedFor(url) {
+    if (!url) return null;
+    var m = url.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/|\/live\/)([A-Za-z0-9_-]{11})/);
+    if (m) return { type: 'iframe', src: 'https://www.youtube-nocookie.com/embed/' + m[1] + '?rel=0' };
+    m = url.match(/loom\.com\/(?:share|embed)\/([A-Za-z0-9]+)/);
+    if (m) return { type: 'iframe', src: 'https://www.loom.com/embed/' + m[1] };
+    if (/\.(mp4|webm)(\?|#|$)/i.test(url)) return { type: 'video', src: url };
+    return null;
+  }
+
+  var articles = Array.prototype.slice.call(document.querySelectorAll('article[data-case]'));
+  articles.forEach(function (el) {
+    var id = el.getAttribute('data-case');
+    var c = cases[id] || {};
+    var video = clean(c.video);
+    var indexItem = document.querySelector('.case-index a[href="#' + id + '"]');
+    var hide = c.show === false || (cfg.hideCasesWithoutVideo === true && !video);
+    if (hide) {
+      el.parentNode.removeChild(el);
+      if (indexItem) indexItem.parentNode.parentNode.removeChild(indexItem.parentNode);
+      return;
+    }
+    var title = el.querySelector('h3').textContent;
+    var box = el.querySelector('.video');
+    var embed = embedFor(video);
+    if (embed && box) {
+      box.removeAttribute('role');
+      box.removeAttribute('aria-label');
+      box.classList.add('has-video');
+      box.innerHTML = '';
+      var node;
+      if (embed.type === 'iframe') {
+        node = document.createElement('iframe');
+        node.src = embed.src;
+        node.title = title;
+        node.setAttribute('loading', 'lazy');
+        node.setAttribute('allow', 'encrypted-media; picture-in-picture; fullscreen');
+        node.setAttribute('allowfullscreen', '');
+      } else {
+        node = document.createElement('video');
+        node.src = embed.src;
+        node.controls = true;
+        node.preload = 'metadata';
+        node.setAttribute('aria-label', title);
+      }
+      box.appendChild(node);
+    }
+    var app = clean(c.app);
+    var appEl = el.querySelector('.built-on');
+    if (app && appEl) {
+      appEl.querySelector('dd').textContent = app;
+      appEl.hidden = false;
+    }
+  });
+
+  if (!document.querySelector('article[data-case]')) {
+    document.getElementById('demos-empty').hidden = false;
+    var idx = document.querySelector('.case-index');
+    if (idx) idx.parentNode.removeChild(idx);
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-config]'), function (el) {
+    var v = clean(cfg[el.getAttribute('data-config')]);
+    if (v) el.textContent = v;
+  });
+
+  var email = clean(cfg.email);
+  var emailRow = document.getElementById('contact-email');
+  if (email) {
+    var ea = emailRow.querySelector('a');
+    ea.href = 'mailto:' + email;
+    ea.querySelector('span').textContent = email;
+  } else {
+    emailRow.parentNode.removeChild(emailRow);
+  }
+
+  var cv = clean(cfg.cvUrl);
+  var cvRow = document.getElementById('contact-cv');
+  var heroBtn = document.getElementById('hero-secondary');
+  if (cv) {
+    cvRow.querySelector('a').href = cv;
+    heroBtn.href = cv;
+    heroBtn.textContent = 'Download CV';
+    heroBtn.target = '_blank';
+    heroBtn.rel = 'noopener';
+  } else {
+    cvRow.parentNode.removeChild(cvRow);
+  }
+})();
+
+/* The page's own product tour */
+(function () {
+  var stepDefs = [
+    { sel: '#hero-copy', title: 'This page has its own tour', body: 'It’s the same kind of in-app guidance I build for enterprise apps. A few quick steps.' },
+    { sel: '.case-index', title: 'Demo overview', body: 'Each demo focuses on one part of the job. Jump to any of them from here.' },
+    { sel: 'article[data-case] .video', title: 'Watch the build', body: 'Every demo is a short recording of a tour I built on a sandbox app.' },
+    { sel: 'article[data-case] figure', title: 'Under the hood', body: 'The logic behind each demo: display rules, automation steps and selectors, in plain language.' },
+    { sel: '#certs-list', title: 'Certified WalkMe Builder', body: 'Levels I and II, from the WalkMe Digital Adoption Institute.' },
+    { sel: '#contact-links', title: 'That’s the tour', body: 'If your team needs guidance like this, let’s talk.' }
+  ];
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var spot = document.querySelector('.tour-spot');
+  var tip = document.querySelector('.tour-tip');
+  var bars = tip.querySelector('.tour-bars');
+  var countEl = document.getElementById('tour-count');
+  var titleEl = document.getElementById('tour-title');
+  var bodyEl = document.getElementById('tour-body');
+  var backBtn = tip.querySelector('.tour-back');
+  var nextBtn = tip.querySelector('.tour-next');
+  var skipBtn = tip.querySelector('.tour-skip');
+  var arrow = tip.querySelector('.tour-arrow');
+  var startBtn = document.getElementById('tour-start');
+  var steps = [], index = 0, target = null, frame = 0, active = false;
+
+  function place() {
+    frame = 0;
+    if (!active || !target) return;
+    var r = target.getBoundingClientRect();
+    var vw = document.documentElement.clientWidth;
+    var vh = window.innerHeight;
+    var pad = 8, gap = 16;
+    spot.style.left = (r.left - pad) + 'px';
+    spot.style.top = (r.top - pad) + 'px';
+    spot.style.width = (r.width + pad * 2) + 'px';
+    spot.style.height = (r.height + pad * 2) + 'px';
+
+    var tw = tip.offsetWidth, th = tip.offsetHeight, top, side;
+    if (r.bottom + pad + gap + th <= vh - 12) { top = r.bottom + pad + gap; side = 'below'; }
+    else if (r.top - pad - gap - th >= 12) { top = r.top - pad - gap - th; side = 'above'; }
+    else { top = Math.max(12, vh - th - 12); side = 'none'; }
+    var left = Math.min(Math.max(r.left, 16), vw - tw - 16);
+    tip.style.top = top + 'px';
+    tip.style.left = left + 'px';
+
+    if (side === 'none') {
+      arrow.hidden = true;
+    } else {
+      arrow.hidden = false;
+      var ax = r.left + Math.min(r.width / 2, 40) - left - 7;
+      arrow.style.left = Math.min(Math.max(ax, 16), tw - 30) + 'px';
+      arrow.style.top = side === 'below' ? '-7px' : 'auto';
+      arrow.style.bottom = side === 'above' ? '-7px' : 'auto';
+    }
+  }
+
+  function schedule() { if (!frame) frame = requestAnimationFrame(place); }
+
+  function show(n) {
+    index = n;
+    var s = steps[index];
+    target = document.querySelector(s.sel);
+    countEl.textContent = 'Step ' + (index + 1) + ' of ' + steps.length;
+    titleEl.textContent = s.title;
+    bodyEl.textContent = s.body;
+    for (var b = 0; b < bars.children.length; b++) bars.children[b].className = b <= index ? 'on' : '';
+    backBtn.hidden = index === 0;
+    nextBtn.textContent = index === steps.length - 1 ? 'Finish' : 'Next';
+    var tall = target.getBoundingClientRect().height > window.innerHeight * 0.55;
+    target.scrollIntoView({ block: tall ? 'start' : 'center', behavior: reduce ? 'auto' : 'smooth' });
+    schedule();
+    nextBtn.focus({ preventScroll: true });
+  }
+
+  function onKey(e) { if (e.key === 'Escape') end(); }
+
+  function start() {
+    steps = stepDefs.filter(function (s) { return document.querySelector(s.sel); });
+    if (!steps.length) return;
+    bars.innerHTML = '';
+    for (var k = 0; k < steps.length; k++) bars.appendChild(document.createElement('i'));
+    active = true;
+    spot.hidden = false;
+    tip.hidden = false;
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    document.addEventListener('keydown', onKey);
+    show(0);
+  }
+
+  function end() {
+    active = false;
+    spot.hidden = true;
+    tip.hidden = true;
+    window.removeEventListener('scroll', schedule);
+    window.removeEventListener('resize', schedule);
+    document.removeEventListener('keydown', onKey);
+    startBtn.focus({ preventScroll: true });
+  }
+
+  startBtn.addEventListener('click', start);
+  nextBtn.addEventListener('click', function () { if (index < steps.length - 1) show(index + 1); else end(); });
+  backBtn.addEventListener('click', function () { if (index > 0) show(index - 1); });
+  skipBtn.addEventListener('click', end);
+})();
+</script>
+</body>
+</html>
